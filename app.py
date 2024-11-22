@@ -4,14 +4,24 @@ import streamlit as st
 st.set_page_config(layout="wide")
 
 # Define product details
+# products = [
+#     {"name": "Buffalo", "main_image": "assets/Wilde_1.34oz_Buffalo_WithoutShadow_02242023.png", "description": "Tangy buffalo meets spicy cayenne pepper for a mouthwatering flavor that packs a punch. It's everything you love about wing night, minus the sauce-covered fingers.", "price": 13.60},
+#     {"name": "Chicken & Waffles", "main_image": "assets/Wilde_1.34oz_CW_WithoutShadow_02242023.png", "description": "These Chicken & Waffles Protein Chips are equal parts savory and sweet—with a hint of buttery maple syrup—all wrapped into one crunchy, low-carb bite.", "price": 13.60},
+#     {"name": "BBQ", "main_image": "assets/Wilde_1.34oz_BBQ_WithoutShadow_02242023.png", "description": "Savory, slow-cooked chicken breast meets tangy BBQ resulting in truly unreal flavor. These BBQ Chicken Protein Chips will be the MVP of your next tailgate.", "price": 13.60},
+#     {"name": "Sea Salt Vinegar", "main_image": "assets/Wilde_1.34oz_SSV_WithoutShadow_02242023.png", "description": "Our crispy Sea Salt & Vinegar Protein Chips have that added zest to make your mouth pucker with each bite and keep you reaching back in the bag for more.", "price": 13.60},
+#     {"name": "Himalayan Pink Salt", "main_image": "assets/Wilde_1.34oz_Pink_WithoutShadow_02242023.png", "description": "The simplicity and crunch of a traditional potato chip, minus the potatoes. Our Himalayan Pink Salt Protein Chips deliver flavor AND nutrition.", "price": 13.60},
+#     {"name": "Spicy Queso", "main_image": "assets/Wilde_1.34oz_NashvilleHot_WithoutShadow_02242023.png", "description":"Hints of smoked chipotle and roasted jalapeño blend with a delicious melty, aged cheddar cheese to create the perfect snack with just the right amount of heat.", "price": 13.60},
+#     {"name": "Nashville Hot", "main_image": "assets/Wilde_1.34oz_NashvilleHot_WithoutShadow_02242023.png", "description": "With the perfect blend of aged Tabasco red peppers and paprika, our Nashville Hot Protein Chips bring the heat and flavor from the Music City's most famous dish.", "price": 13.60},
+# ]
+
 products = [
-    {"name": "Buffalo", "main_image": "assets/Wilde_1.34oz_Buffalo_WithoutShadow_02242023.png", "description": "Tangy buffalo meets spicy cayenne pepper for a mouthwatering flavor that packs a punch. It's everything you love about wing night, minus the sauce-covered fingers.", "price": 13.60},
-    {"name": "Chicken & Waffles", "main_image": "assets/Wilde_1.34oz_CW_WithoutShadow_02242023.png", "description": "These Chicken & Waffles Protein Chips are equal parts savory and sweet—with a hint of buttery maple syrup—all wrapped into one crunchy, low-carb bite.", "price": 13.60},
-    {"name": "BBQ", "main_image": "assets/Wilde_1.34oz_BBQ_WithoutShadow_02242023.png", "description": "Savory, slow-cooked chicken breast meets tangy BBQ resulting in truly unreal flavor. These BBQ Chicken Protein Chips will be the MVP of your next tailgate.", "price": 13.60},
-    {"name": "Sea Salt Vinegar", "main_image": "assets/Wilde_1.34oz_SSV_WithoutShadow_02242023.png", "description": "Our crispy Sea Salt & Vinegar Protein Chips have that added zest to make your mouth pucker with each bite and keep you reaching back in the bag for more.", "price": 13.60},
-    {"name": "Himalayan Pink Salt", "main_image": "assets/Wilde_1.34oz_Pink_WithoutShadow_02242023.png", "description": "The simplicity and crunch of a traditional potato chip, minus the potatoes. Our Himalayan Pink Salt Protein Chips deliver flavor AND nutrition.", "price": 13.60},
-    {"name": "Spicy Queso", "main_image": "assets/Wilde_1.34oz_NashvilleHot_WithoutShadow_02242023.png", "description":"Hints of smoked chipotle and roasted jalapeño blend with a delicious melty, aged cheddar cheese to create the perfect snack with just the right amount of heat.", "price": 13.60},
-    {"name": "Nashville Hot", "main_image": "assets/Wilde_1.34oz_NashvilleHot_WithoutShadow_02242023.png", "description": "With the perfect blend of aged Tabasco red peppers and paprika, our Nashville Hot Protein Chips bring the heat and flavor from the Music City's most famous dish.", "price": 13.60},
+    {"name": "Buffalo", "main_image": "assets/Wilde_1.34oz_Buffalo_WithoutShadow_02242023.png", "description": "Description Here", "price": 13.60},
+    {"name": "Chicken & Waffles", "main_image": "assets/Wilde_1.34oz_CW_WithoutShadow_02242023.png", "description": "Description Here", "price": 13.60},
+    {"name": "BBQ", "main_image": "assets/Wilde_1.34oz_BBQ_WithoutShadow_02242023.png", "description": "Description Here", "price": 13.60},
+    {"name": "Sea Salt Vinegar", "main_image": "assets/Wilde_1.34oz_SSV_WithoutShadow_02242023.png", "description": "Description Here", "price": 13.60},
+    {"name": "Himalayan Pink Salt", "main_image": "assets/Wilde_1.34oz_Pink_WithoutShadow_02242023.png", "description": "Description Here", "price": 13.60},
+    {"name": "Spicy Queso", "main_image": "assets/Wilde_1.34oz_NashvilleHot_WithoutShadow_02242023.png", "description":"Description Here", "price": 13.60},
+    {"name": "Nashville Hot", "main_image": "assets/Wilde_1.34oz_NashvilleHot_WithoutShadow_02242023.png", "description": "Description Here", "price": 13.60},
 ]
 
 # Form for ordering products
