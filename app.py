@@ -74,7 +74,6 @@ with st.form("order_form"):
 if submitted:
     with summary_placeholder.container():
         total = 0
-        st.header("Order Summary")
         for idx, product in enumerate(products):
             qty_134 = st.session_state[f"qty_134_{idx}"]
             qty_225 = st.session_state[f"qty_225_{idx}"]
