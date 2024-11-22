@@ -93,3 +93,14 @@ if submitted:
     with total_placeholder:
         # Display total cost outside the loop
         st.markdown(f"Total Cost:<h3> ${total:.2f}",unsafe_allow_html=True)
+
+# ---- REMOVE UNWANTED STREAMLIT STYLING ----
+hide_st_style = """
+            <style>
+            Main Menu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+            
+st.markdown(hide_st_style, unsafe_allow_html=True)
