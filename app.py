@@ -4,113 +4,97 @@ import streamlit as st
 st.set_page_config(layout="wide")
 
 # Define product details
-# products = [
-#     {"name": "Buffalo", "main_image": "assets/Wilde_1.34oz_Buffalo_WithoutShadow_02242023.png", "description": "Tangy buffalo meets spicy cayenne pepper for a mouthwatering flavor that packs a punch. It's everything you love about wing night, minus the sauce-covered fingers.", "price": 13.60},
-#     {"name": "Chicken & Waffles", "main_image": "assets/Wilde_1.34oz_CW_WithoutShadow_02242023.png", "description": "These Chicken & Waffles Protein Chips are equal parts savory and sweet—with a hint of buttery maple syrup—all wrapped into one crunchy, low-carb bite.", "price": 13.60},
-#     {"name": "BBQ", "main_image": "assets/Wilde_1.34oz_BBQ_WithoutShadow_02242023.png", "description": "Savory, slow-cooked chicken breast meets tangy BBQ resulting in truly unreal flavor. These BBQ Chicken Protein Chips will be the MVP of your next tailgate.", "price": 13.60},
-#     {"name": "Sea Salt Vinegar", "main_image": "assets/Wilde_1.34oz_SSV_WithoutShadow_02242023.png", "description": "Our crispy Sea Salt & Vinegar Protein Chips have that added zest to make your mouth pucker with each bite and keep you reaching back in the bag for more.", "price": 13.60},
-#     {"name": "Himalayan Pink Salt", "main_image": "assets/Wilde_1.34oz_Pink_WithoutShadow_02242023.png", "description": "The simplicity and crunch of a traditional potato chip, minus the potatoes. Our Himalayan Pink Salt Protein Chips deliver flavor AND nutrition.", "price": 13.60},
-#     {"name": "Spicy Queso", "main_image": "assets/Wilde_1.34oz_NashvilleHot_WithoutShadow_02242023.png", "description":"Hints of smoked chipotle and roasted jalapeño blend with a delicious melty, aged cheddar cheese to create the perfect snack with just the right amount of heat.", "price": 13.60},
-#     {"name": "Nashville Hot", "main_image": "assets/Wilde_1.34oz_NashvilleHot_WithoutShadow_02242023.png", "description": "With the perfect blend of aged Tabasco red peppers and paprika, our Nashville Hot Protein Chips bring the heat and flavor from the Music City's most famous dish.", "price": 13.60},
-# ]
-
 products = [
     {"name": "Buffalo", "main_image": "assets/Wilde_1.34oz_Buffalo_WithoutShadow_02242023.png", "description": "Description Here", "price": 13.60},
     {"name": "Chicken & Waffles", "main_image": "assets/Wilde_1.34oz_CW_WithoutShadow_02242023.png", "description": "Description Here", "price": 13.60},
     {"name": "BBQ", "main_image": "assets/Wilde_1.34oz_BBQ_WithoutShadow_02242023.png", "description": "Description Here", "price": 13.60},
     {"name": "Sea Salt Vinegar", "main_image": "assets/Wilde_1.34oz_SSV_WithoutShadow_02242023.png", "description": "Description Here", "price": 13.60},
     {"name": "Himalayan Pink Salt", "main_image": "assets/Wilde_1.34oz_Pink_WithoutShadow_02242023.png", "description": "Description Here", "price": 13.60},
-    {"name": "Spicy Queso", "main_image": "assets/Wilde_1.34oz_NashvilleHot_WithoutShadow_02242023.png", "description":"Description Here", "price": 13.60},
+    {"name": "Spicy Queso", "main_image": "assets/Wilde_1.34oz_NashvilleHot_WithoutShadow_02242023.png", "description": "Description Here", "price": 13.60},
     {"name": "Nashville Hot", "main_image": "assets/Wilde_1.34oz_NashvilleHot_WithoutShadow_02242023.png", "description": "Description Here", "price": 13.60},
 ]
 
-# Form for ordering products
-with st.form("order_form"):
-    # Add the company logo and title in the first column
-    row1_cols = st.columns(5)  # 5 columns in row 1
+# Initialize order summary state
+if "order_summary" not in st.session_state:
+    st.session_state["order_summary"] = []
 
-    with row1_cols[0]:  # First column for logo and title
-        st.write(" ")
-        st.write(" ")
-        st.write(" ")
-        st.image('assets/logo_wilde_chips.jpg', width=200)
-        st.markdown("<h4 style='text-align: left;'>Wholesale</h4>", unsafe_allow_html=True)
+if "total_cost" not in st.session_state:
+    st.session_state["total_cost"] = 0.0
 
-    # Columns 2-4 for the first 3 products
-    for idx, product in enumerate(products[:3]):
-        with row1_cols[idx + 1]:
-            st.markdown(f"<h4 style='text-align: left;'>{product['name']}</h4>", unsafe_allow_html=True)
-            st.image(product["main_image"], width=200)
-            desc_cols = st.columns([3,1])
-            with desc_cols[0]:
-                st.write(product["description"])
-            with desc_cols[1]:
-                st.write(" ")
-            size_cols = st.columns([2,2,1])
-            with size_cols[0]:
-                st.number_input(f"1.34oz", min_value=0, value=0, step=1, key=f"qty_134_{idx}")
-            with size_cols[1]:
-                st.number_input(f"2.25oz", min_value=0, value=0, step=1, key=f"qty_225_{idx}")
+# Define a function to update the order summary
+def update_order_summary():
+    order_summary = []
+    total = 0.0
 
-    # Fifth column (column 5 in row 1) for the order summary placeholder
-    with row1_cols[4]:
-        st.header("Order Summary")
-        summary_placeholder = st.empty()
+    for idx, product in enumerate(products):
+        qty_134 = st.session_state.get(f"qty_134_{idx}", 0)
+        qty_225 = st.session_state.get(f"qty_225_{idx}", 0)
 
-    # Row 2: Display the remaining 4 products
-    row2_cols = st.columns(5)  # Only 4 columns in row 2
-    for idx, product in enumerate(products[3:]):
-        with row2_cols[idx]:
-            st.markdown(f"<h4 style='text-align: left;'>{product['name']}</h4>", unsafe_allow_html=True)
-            st.image(product["main_image"], width=200)
-            desc_cols = st.columns([3,1])
-            with desc_cols[0]:
-                st.write(product["description"])
-            with desc_cols[1]:
-                st.write(" ")
-            size_cols = st.columns([2,2,1])
-            with size_cols[0]:
-                st.number_input(f"1.34oz", min_value=0, value=0, step=1, key=f"qty_134_{idx + 3}")
-            with size_cols[1]:
-                st.number_input(f"2.25oz", min_value=0, value=0, step=1, key=f"qty_225_{idx + 3}")
-    # Fifth column (column 5 in row 1) for the order summary placeholder
-    with row2_cols[4]:
-        total_placeholder = st.empty()
+        # Add 1.34oz orders to the summary
+        if qty_134 > 0:
+            cost_134 = qty_134 * product["price"]
+            total += cost_134
+            order_summary.append(f"{product['name']} (1.34oz): {qty_134} x ${product['price']:.2f} = ${cost_134:.2f}")
 
-    # Submit button
-    submitted = st.form_submit_button("Submit Order")
+        # Add 2.25oz orders to the summary
+        if qty_225 > 0:
+            cost_225 = qty_225 * product["price"]
+            total += cost_225
+            order_summary.append(f"{product['name']} (2.25oz): {qty_225} x ${product['price']:.2f} = ${cost_225:.2f}")
 
-# Display the order summary in column 5 of row 1
-if submitted:
-    with summary_placeholder.container():
-        total = 0
-        for idx, product in enumerate(products):
-            qty_134 = st.session_state[f"qty_134_{idx}"]
-            qty_225 = st.session_state[f"qty_225_{idx}"]
+    st.session_state["order_summary"] = order_summary
+    st.session_state["total_cost"] = total
 
-            # Display individual breakdown for 1.34oz
-            if qty_134 > 0:
-                cost_134 = product["price"] * qty_134
-                total += cost_134
-                st.write(f"{product['name']} (1.34oz)<br> {qty_134} x ${product['price']:.2f} = ${cost_134:.2f}",unsafe_allow_html=True)
+# Layout: row1 for products and summary, row2 for the submit button
+row1_cols = st.columns(5)
+row2_cols = st.columns(5)
 
-            # Display individual breakdown for 2.25oz
-            if qty_225 > 0:
-                cost_225 = product["price"] * qty_225
-                total += cost_225
-                st.markdown(f"{product['name']} (2.25oz)<br> {qty_225} x ${product['price']:.2f} = ${cost_225:.2f}",unsafe_allow_html=True)
+# Logo and title in column 1 of row 1
+with row1_cols[0]:
+    st.image('assets/logo_wilde_chips.jpg', width=200)
+    st.markdown("<h4 style='text-align: left;'>Wholesale</h4>", unsafe_allow_html=True)
 
-    with total_placeholder:
-        # Display total cost outside the loop
-        st.markdown(f"Total Cost:<h3> ${total:.2f}",unsafe_allow_html=True)
+# Products in columns 2-4 of row 1
+for idx, product in enumerate(products[:3]):
+    with row1_cols[idx + 1]:
+        st.markdown(f"<h4 style='text-align: left;'>{product['name']}</h4>", unsafe_allow_html=True)
+        st.image(product["main_image"], width=200)
+        st.write(product["description"])
+        size_cols = st.columns([2,2,1])  # Two columns for side-by-side counters
+        with size_cols[0]:
+            st.number_input(
+                f"1.34oz", min_value=0, value=0, step=1, key=f"qty_134_{idx}", on_change=update_order_summary
+            )
+        with size_cols[1]:
+            st.number_input(
+                f"2.25oz", min_value=0, value=0, step=1, key=f"qty_225_{idx}", on_change=update_order_summary
+            )
 
-# ---- REMOVE UNWANTED STREAMLIT STYLING ----
-hide_st_style = """
-            <style>
-            Main Menu {visibility: hidden;}
-            footer {visibility: hidden;}
-            header {visibility: hidden;}
-            </style>
-            """
-            
-st.markdown(hide_st_style, unsafe_allow_html=True)
+# Order summary in column 5 of row 1
+with row1_cols[4]:
+    st.header("Order Summary")
+    for line in st.session_state["order_summary"]:
+        st.markdown(line, unsafe_allow_html=True)
+    st.markdown(f"### Total Cost: **${st.session_state['total_cost']:.2f}**", unsafe_allow_html=True)
+
+# Remaining products in columns 1-4 of row 2
+for idx, product in enumerate(products[3:]):
+    with row2_cols[idx]:
+        st.markdown(f"<h4 style='text-align: left;'>{product['name']}</h4>", unsafe_allow_html=True)
+        st.image(product["main_image"], width=200)
+        st.write(product["description"])
+        size_cols = st.columns([2,2,1])  # Two columns for side-by-side counters
+        with size_cols[0]:
+            st.number_input(
+                f"1.34oz", min_value=0, value=0, step=1, key=f"qty_134_{idx + 3}", on_change=update_order_summary
+            )
+        with size_cols[1]:
+            st.number_input(
+                f"2.25oz", min_value=0, value=0, step=1, key=f"qty_225_{idx + 3}", on_change=update_order_summary
+            )
+
+# Submit button in column 5 of row 2
+with row2_cols[4]:
+    if st.button("Submit Order"):
+        st.success("Order submitted!")
+        st.write("Thank you for your order.")
