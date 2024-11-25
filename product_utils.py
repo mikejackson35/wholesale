@@ -4,8 +4,8 @@ import streamlit as st
 products = [
     {
         "name": "Buffalo", 
-        "image_225": "assets\Wilde_1oz_8ct_Carton_Buffalo_06012023.png",
-        "image_134": "assets\Wilde_Rendering_12ct_Buffalo_09152022.png",
+        "image_225": "assets/Wilde_1oz_8ct_Carton_Buffalo_06012023.png",
+        "image_134": "assets/Wilde_Rendering_12ct_Buffalo_09152022.png",
         "description": "Description Here", 
         "price_134": 13.60,
         "price_225": 37.20
