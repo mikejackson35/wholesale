@@ -46,14 +46,14 @@ layout_cols = st.columns([1, 1, 1, 1])
 # Products in the first 4 columns
 for idx, product in enumerate(products[:3]):
     with layout_cols[idx]:
-        title_cols = st.columns([1, 4])
+        title_cols = st.columns([1, 8])
         # with title_cols[0]:
         #     st.write('#')
         with title_cols[1]:
             st.markdown(f"<h5 style='text-align: left;'>{product['name']}</h5>", unsafe_allow_html=True)
         st.image(product["main_image"], 
                  width=150,
-                #  caption=product['description'],
+                 caption=product['description'],
                  output_format = 'PNG',
                 #  use_column_width=True
                  )
@@ -76,14 +76,14 @@ for idx, product in enumerate(products[:3]):
 # Remaining products in the next row of the first 4 columns
 for idx, product in enumerate(products[3:]):
     with layout_cols[idx]:
-        title_cols = st.columns([1, 4])
+        title_cols = st.columns([1, 8])
         # with title_cols[0]:
         #     st.write('#')
         with title_cols[1]:
             st.markdown(f"<h5 style='text-align: left;'>{product['name']}</h5>", unsafe_allow_html=True)
         st.image(product["main_image"],
                  width=150, 
-                #  caption=product["description"],
+                 caption=product["description"],
                  output_format = 'PNG',
                 #  use_column_width=True
                  )
