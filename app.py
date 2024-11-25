@@ -8,22 +8,6 @@ st.set_page_config(page_title='Wilde Wholesale',
                    initial_sidebar_state='expanded'
 )
 
-# CSS styles for the container
-container_style = """
-    <style>
-    .custom-container {
-        border: 2px solid #ffffff; /* Change this color to your desired border color */
-        padding: 15px;
-        border-radius: 10px; /* Optional: for rounded corners */
-        background-color: #f9f9f9; /* Optional: to set a background color */
-        margin-bottom: 15px; /* Optional: to add spacing below the container */
-    }
-    </style>
-"""
-
-# Inject the CSS into the Streamlit app
-st.markdown(container_style, unsafe_allow_html=True)
-
 # Initialize order summary state
 if "order_summary" not in st.session_state:
     st.session_state["order_summary"] = []
@@ -85,7 +69,6 @@ for idx, product in enumerate(products[:3]):
 for idx, product in enumerate(products[:3]):
     with layout_cols[idx]:
         st.write('#')
-#         st.write('#')
 
 
 # Remaining products in the next row of the first 4 columns
@@ -111,6 +94,23 @@ for idx, product in enumerate(products[3:]):
             )
         if idx > 2:
             st.write('#')
+
+            # CSS styles for the container
+            container_style = """
+                <style>
+                .custom-container {
+                    border: 2px solid #ffffff; /* Change this color to your desired border color */
+                    padding: 15px;
+                    border-radius: 10px; /* Optional: for rounded corners */
+                    background-color: #f9f9f9; /* Optional: to set a background color */
+                    margin-bottom: 15px; /* Optional: to add spacing below the container */
+                }
+                </style>
+            """
+
+            # Inject the CSS into the Streamlit app
+            st.markdown(container_style, unsafe_allow_html=True)
+
             with st.container(border=True):
                 st.markdown('<center>Sizes Available<br><br>',unsafe_allow_html=True)
                 price_cols = st.columns([1,1])
