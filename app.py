@@ -139,4 +139,4 @@ for idx, product in enumerate(products[3:]):
 with row2_cols[4]:
     if st.button("Submit Order"):
         st.success("Order submitted!")
-        st.write("Thank you for your order.")
+        st.markdown(f"Thanks for your order. <br>You'll get it when you get it. <br>Now send us money.",unsafe_allow_html=True)
