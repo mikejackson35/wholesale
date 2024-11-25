@@ -9,24 +9,51 @@ products = [
         "name": "Buffalo", 
         "main_image": "assets/Wilde_1.34oz_Buffalo_WithoutShadow_02242023.png",
         "description": "Description Here", 
-        "price": 13.60
+        "price_134": 13.60,
+        "price_225": 37.20
         },
     {
         "name": "Chicken & Waffles",
         "main_image": "assets/Wilde_1.34oz_CW_WithoutShadow_02242023.png",
         "description": "Description Here", 
-        "price": 13.60
+        "price_134": 13.60,
+        "price_225": 37.20
         },
     {
         "name": "BBQ", 
         "main_image": "assets/Wilde_1.34oz_BBQ_WithoutShadow_02242023.png", 
         "description": "Description Here", 
-        "price": 13.60
+        "price_134": 13.60,
+        "price_225": 37.20
         },
-    {"name": "Sea Salt Vinegar", "main_image": "assets/Wilde_1.34oz_SSV_WithoutShadow_02242023.png", "description": "Description Here", "price": 13.60},
-    {"name": "Himalayan Pink Salt", "main_image": "assets/Wilde_1.34oz_Pink_WithoutShadow_02242023.png", "description": "Description Here", "price": 13.60},
-    {"name": "Spicy Queso", "main_image": "assets/Wilde_1.34oz_NashvilleHot_WithoutShadow_02242023.png", "description": "Description Here", "price": 13.60},
-    {"name": "Nashville Hot", "main_image": "assets/Wilde_1.34oz_NashvilleHot_WithoutShadow_02242023.png", "description": "Description Here", "price": 13.60},
+    {
+        "name": "Sea Salt Vinegar", 
+        "main_image": "assets/Wilde_1.34oz_SSV_WithoutShadow_02242023.png", 
+        "description": "Description Here", 
+        "price_134": 13.60,
+        "price_225": 37.20
+        },
+    {
+        "name": "Himalayan Pink Salt", 
+        "main_image": "assets/Wilde_1.34oz_Pink_WithoutShadow_02242023.png", 
+        "description": "Description Here", 
+        "price_134": 13.60,
+        "price_225": 37.20
+        },
+    {
+        "name": "Spicy Queso", 
+        "main_image": "assets/Wilde_1.34oz_NashvilleHot_WithoutShadow_02242023.png", 
+        "description": "Description Here", 
+        "price_134": 13.60,
+        "price_225": 37.20
+        },
+    {
+        "name": "Nashville Hot", 
+        "main_image": "assets/Wilde_1.34oz_NashvilleHot_WithoutShadow_02242023.png", 
+        "description": "Description Here", 
+        "price_134": 13.60,
+        "price_225": 37.20
+        },
 ]
 
 # Initialize order summary state
@@ -47,15 +74,15 @@ def update_order_summary():
 
         # Add 1.34oz orders to the summary
         if qty_134 > 0:
-            cost_134 = qty_134 * product["price"]
+            cost_134 = qty_134 * product["price_134"]
             total += cost_134
-            order_summary.append(f"{product['name']} (1.34oz): {qty_134} x ${product['price']:.2f} = ${cost_134:.2f}")
+            order_summary.append(f"{product['name']} (1.34oz): {qty_134} x ${product['price_134']:.2f} = ${cost_134:.2f}")
 
         # Add 2.25oz orders to the summary
         if qty_225 > 0:
-            cost_225 = qty_225 * product["price"]
+            cost_225 = qty_225 * product["price_225"]
             total += cost_225
-            order_summary.append(f"{product['name']} (2.25oz): {qty_225} x ${product['price']:.2f} = ${cost_225:.2f}")
+            order_summary.append(f"{product['name']} (2.25oz): {qty_225} x ${product['price_225']:.2f} = ${cost_225:.2f}")
 
     st.session_state["order_summary"] = order_summary
     st.session_state["total_cost"] = total
