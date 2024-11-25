@@ -102,6 +102,7 @@ for idx, product in enumerate(products[3:]):
                     padding: 15px;
                     border-radius: 10px; /* Optional: for rounded corners */
                     background-color: #f9f9f9; /* Optional: to set a background color */
+                    margin-top: 15px; /* Optional: to add spacing below the container */
                     margin-bottom: 15px; /* Optional: to add spacing below the container */
                 }
                 </style>
