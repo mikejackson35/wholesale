@@ -53,7 +53,7 @@ for idx, product in enumerate(products[:3]):
             st.markdown(f"<h5 style='text-align: left;'>{product['name']}</h5>", unsafe_allow_html=True)
         st.image(product["main_image"], 
                  width=200,
-                 caption=product['description'],
+                #  caption=product['description'],
                  output_format = 'PNG',
                  use_column_width=True)
         size_cols = st.columns([1,1,.5])  # Two columns for side-by-side counters
@@ -82,7 +82,7 @@ for idx, product in enumerate(products[3:]):
             st.markdown(f"<h5 style='text-align: left;'>{product['name']}</h5>", unsafe_allow_html=True)
         st.image(product["main_image"],
                  width=200, 
-                 caption=product["description"],
+                #  caption=product["description"],
                  output_format = 'PNG',
                  use_column_width=True)
         size_cols = st.columns([1,1,.5])  # Two columns for side-by-side counters
