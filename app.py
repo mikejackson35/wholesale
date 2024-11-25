@@ -172,3 +172,14 @@ with layout_cols[4]:
     if st.button("Submit Order"):
         st.success("Order submitted!")
         st.markdown(f"Thanks for your order. <br>You'll get it when you get it. <br>Now send us money.", unsafe_allow_html=True)
+
+# ---- REMOVE UNWANTED STREAMLIT STYLING ----
+hide_st_style = """
+            <style>
+            Main Menu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+            
+st.markdown(hide_st_style, unsafe_allow_html=True)
