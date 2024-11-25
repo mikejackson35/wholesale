@@ -111,7 +111,6 @@ for idx, product in enumerate(products[3:]):
             )
         if idx > 2:
             st.write('#')
-            st.write('#')
             with st.container(border=True):
                 st.markdown('<center>Sizes Available<br><br>',unsafe_allow_html=True)
                 price_cols = st.columns([1,1])
