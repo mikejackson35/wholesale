@@ -115,63 +115,98 @@ def update_order_summary():
         if qty_134 > 0:
             cost_134 = qty_134 * product["price_134"]
             total += cost_134
-            order_summary.append(f"1.34oz {product['name']}: {qty_134} x ${product['price_134']:.2f} = ${cost_134:.2f}")
+            order_summary.append(f"{qty_134} - 1.34oz {product['name']} @ ${cost_134:.2f}cs")
 
         # Add 2.25oz orders to the summary
         if qty_225 > 0:
             cost_225 = qty_225 * product["price_225"]
             total += cost_225
-            order_summary.append(f"2.25oz {product['name']}: {qty_225} x ${product['price_225']:.2f} = ${cost_225:.2f}")
+            order_summary.append(f"{qty_225} - 2.25oz {product['name']} @ ${cost_225:.2f}cs")
 
     st.session_state["order_summary"] = order_summary
     st.session_state["total_cost"] = total
 
 # Layout: 4 columns for products, 1 column for shopping cart and submit button
-layout_cols = st.columns([1, 1, 1, 1, 1])  # Last column is wider for the cart and button
+layout_cols = st.columns([1, 1, 1, 1])  # Last column is wider for the cart and button
 
 # Products in the first 4 columns
 for idx, product in enumerate(products[:3]):
     with layout_cols[idx]:
         st.markdown(f"<h4 style='text-align: left;'>{product['name']}</h4>", unsafe_allow_html=True)
-        st.image(product["main_image"], width=200)
+
+        col1, col2, col3 = st.columns([1, 1, .5])
+        with col1:
+            st.image(product["image_134"], width=125)
+        with col2:
+            st.image(product["image_225"], width=125)
+
         st.write(product["description"])
-        size_cols = st.columns([2, 2, 1])  # Two columns for side-by-side counters
+        size_cols = st.columns([1,1,.5])  # Two columns for side-by-side counters
         with size_cols[0]:
-            st.number_input(
-                f"1.34oz", min_value=0, value=0, step=1, key=f"qty_134_{idx}", on_change=update_order_summary
-            )
-        with size_cols[1]:
             st.number_input(
                 f"2.25oz", min_value=0, value=0, step=1, key=f"qty_225_{idx}", on_change=update_order_summary
             )
+        with size_cols[1]:
+            st.number_input(
+                f"1.34oz", min_value=0, value=0, step=1, key=f"qty_134_{idx}", on_change=update_order_summary
+            )
+
+# Products in the first 4 columns
+for idx, product in enumerate(products[:3]):
+    with layout_cols[idx]:
+        st.write('#')
+        st.write('#')
+
 
 # Remaining products in the next row of the first 4 columns
 for idx, product in enumerate(products[3:]):
     with layout_cols[idx]:
         st.markdown(f"<h4 style='text-align: left;'>{product['name']}</h4>", unsafe_allow_html=True)
-        st.image(product["main_image"], width=200)
+
+        col1, col2, col3 = st.columns([1, 1, .5])
+        with col1:
+            st.image(product["image_134"], width=125)
+        with col2:
+            st.image(product["image_225"], width=125)
+
         st.write(product["description"])
-        size_cols = st.columns([2, 2, 1])  # Two columns for side-by-side counters
+        size_cols = st.columns([1,1,.5])  # Two columns for side-by-side counters
         with size_cols[0]:
-            st.number_input(
-                f"1.34oz", min_value=0, value=0, step=1, key=f"qty_134_{idx + 3}", on_change=update_order_summary
-            )
-        with size_cols[1]:
             st.number_input(
                 f"2.25oz", min_value=0, value=0, step=1, key=f"qty_225_{idx + 3}", on_change=update_order_summary
             )
-
+        with size_cols[1]:
+            st.number_input(
+                f"1.34oz", min_value=0, value=0, step=1, key=f"qty_134_{idx + 3}", on_change=update_order_summary
+            )
 # Unified Shopping Cart and Submit Button in the far-right column
-with layout_cols[4]:
-    st.header("Shopping Cart")
-    for line in st.session_state["order_summary"]:
-        st.markdown(line, unsafe_allow_html=True)
-    st.markdown(f"### Total Cost: **${st.session_state['total_cost']:.2f}**", unsafe_allow_html=True)
+# with layout_cols[5]:
+#     st.header("Empty")
+#     for line in st.session_state["order_summary"]:
+#         st.markdown(line, unsafe_allow_html=True)
+#     st.markdown(f"### Total Cost: **${st.session_state['total_cost']:.2f}**", unsafe_allow_html=True)
 
-    # Submit button
-    if st.button("Submit Order"):
-        st.success("Order submitted!")
-        st.markdown(f"Thanks for your order. <br>You'll get it when you get it. <br>Now send us money.", unsafe_allow_html=True)
+#     # Submit button
+#     if st.button("Submit Order"):
+#         st.success("Order submitted!")
+#         st.markdown(f"Thanks for your order. <br>You'll get it when you get it. <br>Now send us money.", unsafe_allow_html=True)
+
+st.sidebar.image('assets/logo_wilde_chips.jpg')#, width=200)
+st.sidebar.divider()
+st.sidebar.markdown("<h4 style='text-align: left;'><u>Shopping Cart</h4>", unsafe_allow_html=True)
+for line in st.session_state["order_summary"]:
+    st.sidebar.markdown(line, unsafe_allow_html=True)
+st.sidebar.write('#')
+total_cols = st.sidebar.columns([1, 1])
+with total_cols[0]:
+    st.markdown(f"<h4 style='text-align: left;'> Order Total:", unsafe_allow_html=True)
+with total_cols[1]:
+    st.markdown(f"<h4 style='text-align: left;'>${st.session_state['total_cost']:.2f}", unsafe_allow_html=True)
+
+# Submit button
+if st.sidebar.button("Submit Order",use_container_width = True):
+    st.sidebar.success("Order submitted!")
+    st.sidebar.markdown(f"Thanks for your order. <br>You'll get it when you get it. <br>Now send us money.", unsafe_allow_html=True)
 
 # ---- REMOVE UNWANTED STREAMLIT STYLING ----
 hide_st_style = """
