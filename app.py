@@ -57,7 +57,7 @@ for idx, product in enumerate(products[:3]):
                  output_format = 'PNG',
                 #  use_column_width=True
                  )
-        size_cols = st.columns([1,1,.25])  # Two columns for side-by-side counters
+        size_cols = st.columns([1,1,.15])  # Two columns for side-by-side counters
         with size_cols[0]:
             st.number_input(
                 f"2.25oz", min_value=0, value=0, step=1, key=f"qty_225_{idx}", on_change=update_order_summary
@@ -87,7 +87,7 @@ for idx, product in enumerate(products[3:]):
                  output_format = 'PNG',
                 #  use_column_width=True
                  )
-        size_cols = st.columns([1,1,.25])  # Two columns for side-by-side counters
+        size_cols = st.columns([1,1,.15])  # Two columns for side-by-side counters
         with size_cols[0]:
             st.number_input(
                 f"2.25oz", min_value=0, value=0, step=1, key=f"qty_225_{idx + 3}", on_change=update_order_summary
