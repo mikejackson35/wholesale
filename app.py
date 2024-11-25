@@ -66,9 +66,9 @@ for idx, product in enumerate(products[:3]):
             )
 
 # Products in the first 4 columns
-# for idx, product in enumerate(products[:3]):
-#     with layout_cols[idx]:
-#         st.write('#')
+for idx, product in enumerate(products[:3]):
+    with layout_cols[idx]:
+        st.write('#')
 
 
 # Remaining products in the next row of the first 4 columns
