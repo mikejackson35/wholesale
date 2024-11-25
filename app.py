@@ -3,7 +3,7 @@ from product_utils import products
 
 # Set the page layout to wide mode
 st.set_page_config(page_title='Wilde Wholesale',
-                   page_icon='assets\logo_wilde_chips.jpg',
+                   page_icon='assets/logo_wilde_chips.jpg',
                    layout='wide',
                    initial_sidebar_state='expanded'
 )
@@ -118,11 +118,11 @@ for idx, product in enumerate(products[3:]):
                 with price_cols[0]:
                     st.markdown(f"<u>2.25oz</u><br><br>${product['price_225']}/cs",unsafe_allow_html=True)
                     st.markdown(f"12 units/cs",unsafe_allow_html=True)
-                    st.image('assets\Wilde_Rendering_12ct_Buffalo_09152022.png', width=160, output_format='PNG')
+                    st.image('assets/Wilde_Rendering_12ct_Buffalo_09152022.png', width=160, output_format='PNG')
                 with price_cols[1]:
                     st.markdown(f"<u>1.34oz</u><br><br>${product['price_134']}/cs",unsafe_allow_html=True)
                     st.markdown(f"8 units/cs",unsafe_allow_html=True)
-                    st.image('assets\Wilde_1oz_8ct_Carton_Buffalo_06012023.png', width=140, output_format='PNG')
+                    st.image('assets/Wilde_1oz_8ct_Carton_Buffalo_06012023.png', width=140, output_format='PNG')
 
 st.sidebar.image('assets/logo_wilde_chips.jpg')#, width=200)
 st.sidebar.divider()
