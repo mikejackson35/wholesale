@@ -136,9 +136,9 @@ for idx, product in enumerate(products[:3]):
 
         col1, col2, col3 = st.columns([1, 1, .5])
         with col1:
-            st.image(product["image_134"], width=125)
+            st.image(product["image_134"], width=125, output_format = 'PNG')
         with col2:
-            st.image(product["image_225"], width=125)
+            st.image(product["image_225"], width=125, output_format = 'PNG')
 
         st.write(product["description"])
         size_cols = st.columns([1,1,.5])  # Two columns for side-by-side counters
@@ -165,9 +165,9 @@ for idx, product in enumerate(products[3:]):
 
         col1, col2, col3 = st.columns([1, 1, .5])
         with col1:
-            st.image(product["image_134"], width=125)
+            st.image(product["image_134"], width=125, output_format = 'PNG')
         with col2:
-            st.image(product["image_225"], width=125)
+            st.image(product["image_225"], width=125, output_format = 'PNG')
 
         st.write(product["description"])
         size_cols = st.columns([1,1,.5])  # Two columns for side-by-side counters
@@ -179,21 +179,11 @@ for idx, product in enumerate(products[3:]):
             st.number_input(
                 f"1.34oz", min_value=0, value=0, step=1, key=f"qty_134_{idx + 3}", on_change=update_order_summary
             )
-# Unified Shopping Cart and Submit Button in the far-right column
-# with layout_cols[5]:
-#     st.header("Empty")
-#     for line in st.session_state["order_summary"]:
-#         st.markdown(line, unsafe_allow_html=True)
-#     st.markdown(f"### Total Cost: **${st.session_state['total_cost']:.2f}**", unsafe_allow_html=True)
-
-#     # Submit button
-#     if st.button("Submit Order"):
-#         st.success("Order submitted!")
-#         st.markdown(f"Thanks for your order. <br>You'll get it when you get it. <br>Now send us money.", unsafe_allow_html=True)
 
 st.sidebar.image('assets/logo_wilde_chips.jpg')#, width=200)
 st.sidebar.divider()
 st.sidebar.markdown("<h4 style='text-align: left;'><u>Shopping Cart</h4>", unsafe_allow_html=True)
+
 for line in st.session_state["order_summary"]:
     st.sidebar.markdown(line, unsafe_allow_html=True)
 st.sidebar.write('#')
