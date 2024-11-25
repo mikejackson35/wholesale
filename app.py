@@ -54,7 +54,8 @@ for idx, product in enumerate(products[:3]):
         st.image(product["main_image"], 
                  width=200,
                  caption=product['description'],
-                 output_format = 'PNG')
+                 output_format = 'PNG',
+                 use_column_width=True)
         size_cols = st.columns([1,1,.5])  # Two columns for side-by-side counters
         with size_cols[0]:
             st.number_input(
@@ -82,7 +83,8 @@ for idx, product in enumerate(products[3:]):
         st.image(product["main_image"],
                  width=200, 
                  caption=product["description"],
-                 output_format = 'PNG')
+                 output_format = 'PNG',
+                 use_column_width=True)
         size_cols = st.columns([1,1,.5])  # Two columns for side-by-side counters
         with size_cols[0]:
             st.number_input(
