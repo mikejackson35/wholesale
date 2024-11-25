@@ -75,8 +75,8 @@ for idx, product in enumerate(products[:3]):
 for idx, product in enumerate(products[3:]):
     with layout_cols[idx]:
         title_cols = st.columns([1, 4])
-        with title_cols[0]:
-            st.write('#')
+        # with title_cols[0]:
+        #     st.write('#')
         with title_cols[1]:
             st.markdown(f"<h5 style='text-align: left;'>{product['name']}</h5>", unsafe_allow_html=True)
         st.image(product["main_image"],
