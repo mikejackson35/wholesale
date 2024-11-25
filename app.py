@@ -50,7 +50,8 @@ for idx, product in enumerate(products[:3]):
         # with title_cols[0]:
         #     st.write('#')
         with title_cols[1]:
-            st.markdown(f"<h5 style='text-align: left;'>{product['name']}</h5>", unsafe_allow_html=True)
+            st.write(product['name'])
+            # st.markdown(f"<h5 style='text-align: left;'>{product['name']}</h5>", unsafe_allow_html=True)
         st.image(product["main_image"], 
                  width=200,
                 #  caption=product['description'],
@@ -79,7 +80,8 @@ for idx, product in enumerate(products[3:]):
         # with title_cols[0]:
         #     st.write('#')
         with title_cols[1]:
-            st.markdown(f"<h5 style='text-align: left;'>{product['name']}</h5>", unsafe_allow_html=True)
+            # st.markdown(f"<h5 style='text-align: left;'>{product['name']}</h5>", unsafe_allow_html=True)
+            st.write(product['name'])
         st.image(product["main_image"],
                  width=200, 
                 #  caption=product["description"],
@@ -95,7 +97,7 @@ for idx, product in enumerate(products[3:]):
                 f"1.34oz", min_value=0, value=0, step=1, key=f"qty_134_{idx + 3}", on_change=update_order_summary
             )
         if idx > 2:
-
+            st.write('#')
             # CSS styles for the container
             container_style = """
                 <style>
