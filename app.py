@@ -92,7 +92,7 @@ for idx, product in enumerate(products[3:]):
                 f"1.34oz", min_value=0, value=0, step=1, key=f"qty_134_{idx + 3}", on_change=update_order_summary
             )
         if idx > 2:
-            st.write('#')
+            # st.write('#')
             # CSS styles for the container
             container_style = """
                 <style>
