@@ -55,7 +55,7 @@ def update_order_summary():
     st.session_state["order_summary"] = order_summary
     st.session_state["total_cost"] = total
 
-st.write('#')
+# st.write('#')
 # Layout
 layout_cols = st.columns([1, 1, 1, 1])
 
