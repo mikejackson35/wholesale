@@ -2,7 +2,11 @@ import streamlit as st
 from product_utils import products
 
 # Set the page layout to wide mode
-st.set_page_config(layout="wide")
+st.set_page_config(page_title='Wilde Wholesale',
+                   page_icon='assets\logo_wilde_chips.jpg',
+                   layout='wide',
+                   initial_sidebar_state='expanded'
+)
 
 # CSS styles for the container
 container_style = """
