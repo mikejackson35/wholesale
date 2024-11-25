@@ -50,13 +50,13 @@ for idx, product in enumerate(products[:3]):
         # with title_cols[0]:
         #     st.write('#')
         with title_cols[1]:
-            st.write(product['name'])
-            # st.markdown(f"<h5 style='text-align: left;'>{product['name']}</h5>", unsafe_allow_html=True)
+            st.markdown(f"<h5 style='text-align: left;'>{product['name']}</h5>", unsafe_allow_html=True)
         st.image(product["main_image"], 
-                 width=200,
+                 width=150,
                 #  caption=product['description'],
                  output_format = 'PNG',
-                 use_column_width=True)
+                #  use_column_width=True
+                 )
         size_cols = st.columns([1,1,.5])  # Two columns for side-by-side counters
         with size_cols[0]:
             st.number_input(
@@ -80,13 +80,13 @@ for idx, product in enumerate(products[3:]):
         # with title_cols[0]:
         #     st.write('#')
         with title_cols[1]:
-            # st.markdown(f"<h5 style='text-align: left;'>{product['name']}</h5>", unsafe_allow_html=True)
-            st.write(product['name'])
+            st.markdown(f"<h5 style='text-align: left;'>{product['name']}</h5>", unsafe_allow_html=True)
         st.image(product["main_image"],
-                 width=200, 
+                 width=150, 
                 #  caption=product["description"],
                  output_format = 'PNG',
-                 use_column_width=True)
+                #  use_column_width=True
+                 )
         size_cols = st.columns([1,1,.5])  # Two columns for side-by-side counters
         with size_cols[0]:
             st.number_input(
