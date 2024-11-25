@@ -1,3 +1,5 @@
+import streamlit as st
+
 # Define product details
 products = [
     {

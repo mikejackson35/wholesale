@@ -24,13 +24,13 @@ def update_order_summary():
         if qty_134 > 0:
             cost_134 = qty_134 * product["price_134"]
             total += cost_134
-            order_summary.append(f"{product['name']} (1.34oz): {qty_134} x ${product['price_134']:.2f} = ${cost_134:.2f}")
+            order_summary.append(f"1.34oz {product['name']}: {qty_134} x ${product['price_134']:.2f} = ${cost_134:.2f}")
 
         # Add 2.25oz orders to the summary
         if qty_225 > 0:
             cost_225 = qty_225 * product["price_225"]
             total += cost_225
-            order_summary.append(f"{product['name']} (2.25oz): {qty_225} x ${product['price_225']:.2f} = ${cost_225:.2f}")
+            order_summary.append(f"2.25oz {product['name']}: {qty_225} x ${product['price_225']:.2f} = ${cost_225:.2f}")
 
     st.session_state["order_summary"] = order_summary
     st.session_state["total_cost"] = total
