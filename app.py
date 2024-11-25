@@ -62,7 +62,7 @@ for idx, product in enumerate(products[:3]):
 
 # Order summary in column 5 of row 1
 with row1_cols[4]:
-    st.header("Order Summary")
+    st.header("Shopping Cart")
     for line in st.session_state["order_summary"]:
         st.markdown(line, unsafe_allow_html=True)
     st.markdown(f"### Total Cost: **${st.session_state['total_cost']:.2f}**", unsafe_allow_html=True)
