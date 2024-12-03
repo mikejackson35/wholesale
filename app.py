@@ -51,9 +51,9 @@ with top_row_cols[0]:
     logo_cols = st.columns([.5, 2, .5])
     with logo_cols[1]:
         st.image("assets/logo_wilde_chips.jpg", use_column_width=True)
-    whs_cols = st.columns([1, 1, 1])
+    whs_cols = st.columns([.5, 2, .5])
     with whs_cols[1]:
-        st.markdown("<h1 style='text-align: center;'>Wholesale</h1>", unsafe_allow_html=True)
+        st.markdown("<h4 style='text-align: center;'>Wholesale</h4>", unsafe_allow_html=True)
 
 # Add the first three products to the remaining columns in the top row
 for idx, product in enumerate(products[:3]):
