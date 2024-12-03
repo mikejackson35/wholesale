@@ -39,22 +39,30 @@ def update_order_summary():
     st.session_state["order_summary"] = order_summary
     st.session_state["total_cost"] = total
 
-# Layout
-layout_cols = st.columns([1, 1, 1, 1])
+# Layout for the first row
+top_row_cols = st.columns([1, 1, 1, 1])
 
-# Products in the first 4 columns
+# Add logo in the top-left corner
+with top_row_cols[0]:
+    st.write('#')
+    st.write('#')
+    st.write('#')
+    st.write('#')
+    logo_cols = st.columns([.5, 2, .5])
+    with logo_cols[1]:
+        st.image("assets/logo_wilde_chips.jpg", use_column_width=True)
+
+# Add the first three products to the remaining columns in the top row
 for idx, product in enumerate(products[:3]):
-    with layout_cols[idx]:
-        title_cols = st.columns([1, 10])
-        with title_cols[1]:
-            st.markdown(f"<h5 style='text-align: center;'>{product['name']}</h5>", unsafe_allow_html=True)
-        st.image(product["main_image"], 
+    with top_row_cols[idx + 1]:  # Start from column 1 (second column)
+        st.markdown(f"<h5 style='text-align: center;'>{product['name']}</h5>", unsafe_allow_html=True)
+        st.image(product["main_image"],
                  width=150,
-                 caption=product['description'],
-                 output_format = 'PNG',
+                #  caption=product["description"],
+                 output_format='PNG',
                  use_column_width=True
                  )
-        size_cols = st.columns([1,1,.15])  # Two columns for side-by-side counters
+        size_cols = st.columns([1, 1, 0.15])  # Two columns for side-by-side counters
         with size_cols[0]:
             st.number_input(
                 f"2.25oz", min_value=0, value=0, step=1, key=f"qty_225_{idx}", on_change=update_order_summary
@@ -64,25 +72,20 @@ for idx, product in enumerate(products[:3]):
                 f"1.34oz", min_value=0, value=0, step=1, key=f"qty_134_{idx}", on_change=update_order_summary
             )
 
-# Products in the first 4 columns
-for idx, product in enumerate(products[:3]):
-    with layout_cols[idx]:
-        st.write('#')
+# Layout for the second row
+bottom_row_cols = st.columns([1, 1, 1, 1])
 
-
-# Remaining products in the next row of the first 4 columns
+# Add the remaining four products to the second row
 for idx, product in enumerate(products[3:]):
-    with layout_cols[idx]:
-        title_cols = st.columns([1, 10])
-        with title_cols[1]:
-            st.markdown(f"<h5 style='text-align: center;'>{product['name']}</h5>", unsafe_allow_html=True)
+    with bottom_row_cols[idx]:  # Fill all four columns
+        st.markdown(f"<h5 style='text-align: center;'>{product['name']}</h5>", unsafe_allow_html=True)
         st.image(product["main_image"],
-                 width=150, 
-                 caption=product["description"],
-                 output_format = 'PNG',
+                 width=150,
+                #  caption=product["description"],
+                 output_format='PNG',
                  use_column_width=True
                  )
-        size_cols = st.columns([1,1,.15])  # Two columns for side-by-side counters
+        size_cols = st.columns([1, 1, 0.15])  # Two columns for side-by-side counters
         with size_cols[0]:
             st.number_input(
                 f"2.25oz", min_value=0, value=0, step=1, key=f"qty_225_{idx + 3}", on_change=update_order_summary
@@ -91,38 +94,37 @@ for idx, product in enumerate(products[3:]):
             st.number_input(
                 f"1.34oz", min_value=0, value=0, step=1, key=f"qty_134_{idx + 3}", on_change=update_order_summary
             )
-        if idx > 2:
-            st.write('#')
-            # CSS styles for the container
-            container_style = """
-                <style>
-                .custom-container {
-                    border: 2px solid #ffffff; /* Change this color to your desired border color */
-                    padding: 15px;
-                    border-radius: 10px; /* Optional: for rounded corners */
-                    background-color: #f9f9f9; /* Optional: to set a background color */
-                    margin-top: 15px; /* Optional: to add spacing below the container */
-                    margin-bottom: 15px; /* Optional: to add spacing below the container */
-                }
-                </style>
-            """
+        st.write('#')
 
-            # Inject the CSS into the Streamlit app
-            st.markdown(container_style, unsafe_allow_html=True)
+container_style = """
+    <style>
+    .custom-container {
+        border: 2px solid #ffffff; /* Change this color to your desired border color */
+        padding: 15px;
+        border-radius: 10px; /* Optional: for rounded corners */
+        background-color: #f9f9f9; /* Optional: to set a background color */
+        margin-top: 15px; /* Optional: to add spacing below the container */
+        margin-bottom: 15px; /* Optional: to add spacing below the container */
+    }
+    </style>
+"""
 
-            with st.container(border=True):
-                st.markdown('<center>Sizes Available<br><br>',unsafe_allow_html=True)
-                price_cols = st.columns([1,1])
-                with price_cols[0]:
-                    st.markdown(f"<u>2.25oz</u><br>${product['price_225']:.2f}/cs<br>12 units/cs",unsafe_allow_html=True)
-                    st.image('assets/Wilde_Rendering_12ct_Buffalo_09152022.png', width=160, output_format='PNG')
-                with price_cols[1]:
-                    st.markdown(f"<u>1.34oz</u><br>${product['price_134']:.2f}/cs<br>8 units/cs",unsafe_allow_html=True)
-                    st.image('assets/Wilde_1oz_8ct_Carton_Buffalo_06012023.png', width=140, output_format='PNG')
+# Inject the CSS into the Streamlit app
+st.sidebar.markdown(container_style, unsafe_allow_html=True)
 
-st.sidebar.image('assets/logo_wilde_chips.jpg')#, width=200)
+with st.sidebar.container(border=True):
+    st.markdown('<center>Sizes Available<br><br>',unsafe_allow_html=True)
+    price_cols = st.columns([1,1])
+    with price_cols[0]:
+        st.markdown(f"<u>2.25oz</u><br>${product['price_225']:.2f}/cs<br>12 units/cs",unsafe_allow_html=True)
+        st.image('assets/Wilde_Rendering_12ct_Buffalo_09152022.png', width=160, output_format='PNG')
+    with price_cols[1]:
+        st.markdown(f"<u>1.34oz</u><br>${product['price_134']:.2f}/cs<br>8 units/cs",unsafe_allow_html=True)
+        st.image('assets/Wilde_1oz_8ct_Carton_Buffalo_06012023.png', width=140, output_format='PNG')
+
+
 st.sidebar.divider()
-st.sidebar.markdown("<h4 style='text-align: left;'><u>Shopping Cart</h4>", unsafe_allow_html=True)
+st.sidebar.markdown("<h4 style='text-align: center;'><u>Shopping Cart</h4>", unsafe_allow_html=True)
 
 for line in st.session_state["order_summary"]:
     st.sidebar.markdown(line, unsafe_allow_html=True)
