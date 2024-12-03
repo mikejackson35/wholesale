@@ -44,9 +44,9 @@ top_row_cols = st.columns([1, 1, 1, 1])
 
 # Add logo in the top-left corner
 with top_row_cols[0]:
-    st.write('#')
-    st.write('#')
-    st.write('#')
+    # st.write('#')
+    # st.write('#')
+    # st.write('#')
     st.write('#')
     logo_cols = st.columns([.5, 2, .5])
     with logo_cols[1]:
