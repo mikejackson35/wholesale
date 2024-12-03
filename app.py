@@ -71,6 +71,7 @@ for idx, product in enumerate(products[:3]):
             st.number_input(
                 f"1.34oz", min_value=0, value=0, step=1, key=f"qty_134_{idx}", on_change=update_order_summary
             )
+        st.write('#')
 
 # Layout for the second row
 bottom_row_cols = st.columns([1, 1, 1, 1])
@@ -94,7 +95,6 @@ for idx, product in enumerate(products[3:]):
             st.number_input(
                 f"1.34oz", min_value=0, value=0, step=1, key=f"qty_134_{idx + 3}", on_change=update_order_summary
             )
-        st.write('#')
 
 container_style = """
     <style>
@@ -122,8 +122,7 @@ with st.sidebar.container(border=True):
         st.markdown(f"<u>1.34oz</u><br>${product['price_134']:.2f}/cs<br>8 units/cs",unsafe_allow_html=True)
         st.image('assets/Wilde_1oz_8ct_Carton_Buffalo_06012023.png', width=140, output_format='PNG')
 
-
-st.sidebar.divider()
+st.write('#')
 st.sidebar.markdown("<h4 style='text-align: center;'><u>Shopping Cart</h4>", unsafe_allow_html=True)
 
 for line in st.session_state["order_summary"]:
